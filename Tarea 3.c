@@ -1,44 +1,39 @@
 #include <stdio.h>
 #include <math.h>
-
-int punto1(int *a, int n){
-    int diferencia=0, estacionamiento=0, distancia =0, distancias =0;
-    int j, i, h;
-    for(j=1; j<n; j++){
-        int clave = a[j];
-        int i = j-1;
-        while(i>=0 && a[i] > clave){
-            a[i+1] = a[i];
-            i = i-1;
+int punto1(int *a, int n){ 
+    int distancia, estacionamiento, i, min, max;
+    min = a[0];
+    max = 0;
+    estacionamiento = 0;
+    for(i=1;i<n;i++){
+        if(a[i] < min){
+            min = a[i];
         }
-    a[i+1] = clave;
-    }
-    for(i=1; i<n; i++){
-        diferencia = a[i] - a[i-1]; 
-        estacionamiento += diferencia;
-    }
-    for(h=0; h<=n; h++){
-        if(h == 0){
-            distancia = estacionamiento - a[h];
-            distancias += distancia;
-        }
-        else if(h == n){
-            distancia = estacionamiento - a[h-1];
-            distancia = fabs(distancia);
-            distancias += distancia;
-        }
-        else{
-            distancia = a[h] - a[h-1];
-            distancias += distancia;
+        else if(a[i] > max){
+            max = a[i];
         }
     }
-    printf("estacionamiento : %d", distancias);
+    estacionamiento = fabs(min - max); 
+    distancia = estacionamiento * 2;
+    printf("%d",distancia);
+    
 }
 
-int main(){
-    int arreglo[] = {24,13,89,37};
-    int n=4, i;
-    punto1(arreglo, n);
+int main(){ /*Falta mejorar entrada*/
+    int casos=0, n=0, i, j=0;
+    scanf("%d", &casos);
+    while (j<casos)
+    {
+        scanf("%d",&n);
+        int arreglo[n];
+
+        for(i=0;i<n;i++){
+            scanf("%d",&arreglo[i]);
+        }
+        punto1(arreglo,n);
+        printf("\n");
+        j++;
+    }
     return 0;
 }
 
