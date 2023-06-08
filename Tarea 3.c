@@ -13,7 +13,7 @@ int punto1(int *a, int n){
             max = a[i];
         }
     }
-    estacionamiento = fabs(min - max); 
+    estacionamiento = max - min; 
     distancia = estacionamiento * 2;
     printf("%d",distancia);
     
